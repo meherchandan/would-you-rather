@@ -35,7 +35,6 @@ class Login extends Component {
         }
     }
     render() {
-        console.log(this.state);
         return (
             <div className="login-screen">
                 <div className="login-title">

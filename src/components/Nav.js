@@ -10,6 +10,8 @@ class Nav extends Component {
         this.props.dispatch(removeAuthUser())
     }
     render(){
+        const user = this.props.authUser;
+        console.log(this.props.history);
         return (
             <div className="container">
                 <h2 className="title">Would You Rather</h2>
@@ -28,9 +30,20 @@ class Nav extends Component {
                             </Button>
                         </div>
                 
-                    {this.props.authUser && <div>
+                    {user && <div>
                         <div className="signed-in">
-                            <Button color="inherit">USER DETAILS </Button>
+                          
+                                <div 
+                                style={{
+                                    backgroundImage:`url(${user.avatarURL})`,
+                                    width: '40px',
+                                    height: '40px',
+                                    backgroundSize: 'contain',
+                                    borderRadius: '20px',
+                                    marginRight:'5px'
+                                }}
+                                ></div>
+                            <div style={{margin: 'auto'}}>{user.name}</div>
                             <Button color="inherit">
                             <Link to="/" className ="nav-link" onClick={e=>this.handleLogout(e)}>Logout</Link>
                             </Button>
