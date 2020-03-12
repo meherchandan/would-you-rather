@@ -1,5 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
+<h1> Would You Rather </h1>
 Would You Rather prjoect is a game in which authorized user can answer polls and new polls and can see the leaderboard.
 
 ## Available Scripts
