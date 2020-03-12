@@ -1,15 +1,15 @@
 import React,{Component, Fragment} from 'react';
 import Nav from './Nav';
-import {BrowserRouter as Router,Route,Switch } from 'react-router-dom';
+import {BrowserRouter as Router,Route,Redirect } from 'react-router-dom';
 import {connect} from 'react-redux'
 import Login from './Login';
 import Questions from './Questions';
 import VoteBlock from './VoteBlock';
 import NewQuestion from './NewQuestion';
+import LeaderBoard from './LeaderBoard';
 class App extends Component{
   render(){
     const user = this.props.authUser;
-    console.log(this.props)
     const invalidUser = user==null||Object.keys(user).length===0;
     return (
       <Router>
@@ -19,20 +19,25 @@ class App extends Component{
           <Route 
             exact 
             path="/question/:id" 
-            // component={VoteBlock}
             render=
-            {(routeProps)=>invalidUser? <Login />:<VoteBlock {...routeProps}/>
+            {(routeProps)=>invalidUser? <Redirect to="/" />:<VoteBlock {...routeProps}/>
             }
           />
           <Route 
             exact 
-            path="/new_question" 
+            path="/add" 
             render=
-            {()=>invalidUser? <NewQuestion />:<NewQuestion />}
+            {(routeProps)=>invalidUser? <Redirect to="/" />:<NewQuestion  {...routeProps}/>}
+          />
+          <Route 
+            exact 
+            path="/leaderboard" 
+            render=
+            {(routeProps)=>invalidUser? <Redirect to="/" />:<LeaderBoard  {...routeProps}/>}
           />
           <Route exact path = "/" render=
-          {()=>
-            invalidUser? <Login />:<Questions />
+          {(routeProps)=>
+            invalidUser? <Login />:<Questions  {...routeProps}/>
           } />
 
           </div>

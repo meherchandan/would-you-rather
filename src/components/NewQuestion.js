@@ -11,21 +11,23 @@ class NewQuestion extends Component {
 
     }
     onChangeOptionOne = (event)=>{
-        console.log(event.target)
-        this.setState(()=>(this.setState({optionOne:event.target.value,error:false})))
+        const {value} = event.target;
+        this.setState((prevState)=>({optionOne:value,error:false}))
     }
     onChangeOptionTwo= (event)=>{
-        this.setState(()=>(this.setState({optionTwo:event.target.value,error:false})))
+        const {value} = event.target;
+        this.setState((prevState)=>({optionTwo:value,error:false}))
     }
     onSubmit = ()=>{
         const {optionOne,optionTwo,error} = this.state;
-        const {authUser} = this.props;
+        const {authUser,dispatch} = this.props;
         if(optionOne &&optionTwo &&!error){
-            saveNewQuestion({
+            dispatch(saveNewQuestion({
                 optionOneText:optionOne, 
                 optionTwoText:optionTwo, 
-                author:authUser
-            });
+                author:authUser.id
+            }));
+            this.props.history.push("/");
         }
         if(!optionOne ||!optionTwo){
             this.setState({error:true});
@@ -40,20 +42,22 @@ class NewQuestion extends Component {
                 </div>
                 <div className="new-question-form">
                 <h3>Would You Rather..</h3>
-                <form  noValidate autoComplete="off" style={{ display: 'flex',flexDirection: 'column'}} >
+                <div   style={{ display: 'flex',flexDirection: 'column'}} >
                     <div className="new-question-text-field">
                         <TextField 
-                            id="standard-basic" 
+                            id="option-one" 
                             fullWidth 
-                            // value={this.state.optionOne}
+                            error={!Boolean(this.state.optionOne) &&this.state.error}
+                            value={this.state.optionOne}
                             placeholder="Enter Option one text here"
                             onChange={(e)=>this.onChangeOptionOne(e)}
                         />
                     </div>
                     <div className="new-question-text-field">
                         <TextField 
-                            id="standard-basic" 
+                            id="option-two" 
                             fullWidth 
+                            error={!Boolean(this.state.optionTwo)&&this.state.error}
                             value={this.state.optionTwo}
                             placeholder="Enter Option two text here"
                             onChange={(e)=>{this.onChangeOptionTwo(e)}}
@@ -63,7 +67,7 @@ class NewQuestion extends Component {
                     <Button variant="contained" onClick={()=>this.onSubmit()} color="primary">Submit
                     </Button>
                     </div>
-                </form>
+                </div>
                 </div>
                 
             </div>

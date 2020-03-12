@@ -19,9 +19,12 @@ class Login extends Component {
     }
     handleChange = (event)=>{
         const auth = this.props.users.filter(user=>user.id===event.target.value);
-        this.setState(()=>({error:false,selectedUser:event.target.value,authUser:auth[0]}));
+       
         if(!event.target.value){
-            this.setState((prevState)=>({error:!prevState.error}))
+            this.setState((prevState)=>({error:true}))
+        }
+        else{
+            this.setState(()=>({error:false,selectedUser:event.target.value,authUser:auth[0]}));
         }
 
     }

@@ -100,7 +100,6 @@ class Questions extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log("ownprops",ownProps);
     return {
         authUser:state.authUser,
         questions: state.questions,

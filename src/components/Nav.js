@@ -11,7 +11,6 @@ class Nav extends Component {
     }
     render(){
         const user = this.props.authUser;
-        console.log(this.props.history);
         return (
             <div className="container">
                 <h2 className="title">Would You Rather</h2>

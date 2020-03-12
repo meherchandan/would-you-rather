@@ -1,6 +1,6 @@
 import React, { Component,Fragment } from 'react'
 import {connect } from 'react-redux';
-import {Link, Redirect} from "react-router-dom";
+import { Redirect} from "react-router-dom";
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import {handleUserAnswer} from '../actions/questions';
@@ -24,9 +24,8 @@ class VoteBlock extends Component {
         this.setState({redirectResult:true});
     }
     render() {
-        console.log(this.props);
         const {question,authUser,users} = this.props;
-        const author = users.filter(user=>user.id==question.author)[0];
+        const author = users.filter(user=>user.id===question.author)[0];
         if(authUser==null){
             return <Redirect to = "/" />
         }
@@ -86,7 +85,6 @@ class VoteBlock extends Component {
                         </RadioGroup>
                     </div>
                     }
-                   
                     
                 </div>
                 {
@@ -106,8 +104,6 @@ class VoteBlock extends Component {
     }
 }
 const mapStateToProps = (state, ownProps) => {
-    console.log(state);
-    console.log(ownProps);
     return {
         question: state.questions.filter(question=>question.id===ownProps.match.params.id)[0],
         authUser: state.authUser,

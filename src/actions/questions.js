@@ -1,4 +1,4 @@
-import {_getQuestions,formatQuestion,_saveQuestion} from '../utils/_DATA';
+import {_getQuestions,_saveQuestion} from '../utils/_DATA';
 import {addUserAnswer}  from './users';
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const SET_USER_ANSWER = 'SET_USER_ANSWER';
@@ -54,7 +54,6 @@ export function saveNewQuestion(newQuestion){
     return dispatch=>{
         return _saveQuestion(newQuestion)
             .then(question=>{
-                console.log(question);
                 return dispatch(addQuestion(question))})
             
     }
