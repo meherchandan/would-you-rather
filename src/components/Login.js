@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
+import {getAllQuestions} from './../actions/questions';
 class Login extends Component {
     state={
         authUser:{},
@@ -15,6 +16,7 @@ class Login extends Component {
     componentDidMount(){
         const {dispatch} = this.props;
         dispatch(getAllUsers());
+        dispatch(getAllQuestions());
 
     }
     handleChange = (event)=>{

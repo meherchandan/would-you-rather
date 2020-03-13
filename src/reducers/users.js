@@ -1,4 +1,4 @@
-import {GET_ALL_USERS,UPDATE_USER_ANSWER} from './../actions/users';
+import {ADD_QUESTION_TO_USER,GET_ALL_USERS,UPDATE_USER_ANSWER} from './../actions/users';
 
 export default function users (state=[], action){
     switch(action.type){
@@ -10,6 +10,12 @@ export default function users (state=[], action){
             user.answers[questionId] = optionId;
             const remainingusers =state.filter(user=>user.id!==userId) 
             return [...remainingusers, user];
+        case ADD_QUESTION_TO_USER:
+            const { author,id} = action.question;
+            let user1 = state.filter(user=>user.id===author)[0];
+            user1.questions.push(id);
+            const otherusers =state.filter(user=>user.id!==author) 
+            return [...otherusers, user1];
         default:
             return state;
     }

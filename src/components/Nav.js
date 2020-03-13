@@ -22,7 +22,7 @@ class Nav extends Component {
                                 <Link to="/" className ="nav-link" >Home</Link>
                             </Button>
                             <Button color="inherit">
-                                <Link  className ="nav-link" to="/new_question" >New Question</Link>
+                                <Link  className ="nav-link" to="/add" >New Question</Link>
                             </Button>
                             <Button color="inherit">
                                 <Link to="/leaderboard" className ="nav-link">Leader Board</Link>
@@ -31,7 +31,6 @@ class Nav extends Component {
                 
                     {user && <div>
                         <div className="signed-in">
-                          
                                 <div 
                                 style={{
                                     backgroundImage:`url(${user.avatarURL})`,

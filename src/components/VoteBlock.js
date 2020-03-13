@@ -25,10 +25,10 @@ class VoteBlock extends Component {
     }
     render() {
         const {question,authUser,users} = this.props;
-        const author = users.filter(user=>user.id===question.author)[0];
-        if(authUser==null){
-            return <Redirect to = "/" />
+        if(!question){
+            return <Redirect to = "/404" />
         }
+        const author = users.filter(user=>user.id===question.author)[0];
         const answered = Object.keys(authUser.answers).includes(question.id);
         const optionOneVotes = question.optionOne.votes.length;
         const optionTwoVotes = question.optionTwo.votes.length;

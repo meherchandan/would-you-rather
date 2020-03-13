@@ -237,3 +237,8 @@ a::after{
   justify-content: space-around;
   align-items: center;
 }
+.not-found{
+  width: 50%;
+  margin: 50px auto;
+  color: red;
+}

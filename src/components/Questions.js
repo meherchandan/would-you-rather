@@ -32,10 +32,10 @@ class Questions extends Component {
         tabValue:0,
 
     }
-    componentDidMount(){
-        const {dispatch} = this.props;
-        dispatch(getAllQuestions());
-    }
+    // componentDidMount(){
+    //     const {dispatch} = this.props;
+    //     dispatch(getAllQuestions());
+    // }
     onVote = (e,id)=>{
         return <Redirect to="/test" />
     }
